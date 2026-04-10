@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -26,17 +25,13 @@ export const metadata: Metadata = {
     template: "%s | AdviceHub",
   },
   description:
-    "AdviceHub delivers practical, expert advice on technology, web development, online business, and productivity. Stay ahead with in-depth guides and tutorials.",
+    "AdviceHub delivers practical, expert advice on technology, web development, online business, and productivity.",
   keywords: [
     "technology blog",
     "web development",
     "programming tutorials",
     "productivity tips",
     "online business",
-    "developer tools",
-    "Next.js",
-    "React",
-    "TypeScript",
   ],
   authors: [{ name: "Jad Lamtaifi" }],
   creator: "Jad Lamtaifi",
@@ -46,8 +41,7 @@ export const metadata: Metadata = {
     url: "https://advicehub.vercel.app",
     siteName: "AdviceHub",
     title: "AdviceHub — Practical Advice on Tech, Web Dev & Productivity",
-    description:
-      "Practical, expert advice on technology, web development, online business, and productivity.",
+    description: "Practical, expert advice on technology and business.",
     images: [
       {
         url: "/og-image.jpg",
@@ -59,33 +53,21 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AdviceHub — Practical Advice on Tech, Web Dev & Productivity",
-    description:
-      "Practical, expert advice on technology, web development, online business, and productivity.",
+    title: "AdviceHub — Practical Advice",
+    description: "Expert advice on tech and productivity.",
     images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  other: {
-    "google-adsense-account": "ca-pub-5598684072787687",
   },
 };
 
-
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
@@ -93,13 +75,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* ✅ AdSense Script (FIX IMPORTANT) */}
         <Script
           async
+          strategy="beforeInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5598684072787687"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
+
+        {/* ✅ Meta verification (OBLIGATOIRE) */}
+        <meta name="google-adsense-account" content="ca-pub-5598684072787687" />
       </head>
+
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
           <Navbar />
@@ -108,6 +95,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-
   );
 }
+
