@@ -4,6 +4,8 @@ import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Script from "next/script";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -73,7 +75,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  other: {
+    "google-adsense-account": "ca-pub-5598684072787687",
+  },
 };
+
 
 export default function RootLayout({
   children,
@@ -86,6 +92,14 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} h-full`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5598684072787687"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
           <Navbar />
@@ -94,5 +108,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+
   );
 }
